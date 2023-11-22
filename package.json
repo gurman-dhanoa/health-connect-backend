@@ -1,5 +1,5 @@
 {
-  "name": "clinic-on-cloud",
+  "name": "health-connect",
   "version": "1.0.0",
   "description": "The platform will provide a comprehensive solution for travellers to find suitable doctors based on their location, treatment fees, availability, and patient ratings. It will offer online appointment booking, electronic prescription downloads, email notifications, and emergency consultation services (ECS). Doctors will have the ability to allocate appointment times, update prescriptions, and access previous medical records. Overall, the platform aims to streamline the healthcare process for travellers while providing a convenient and efficient experience for both patients and doctors",
   "main": "backend/server.js",
