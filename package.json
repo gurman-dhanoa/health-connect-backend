@@ -1,0 +1,26 @@
+{
+  "name": "clinic-on-cloud",
+  "version": "1.0.0",
+  "description": "The platform will provide a comprehensive solution for travellers to find suitable doctors based on their location, treatment fees, availability, and patient ratings. It will offer online appointment booking, electronic prescription downloads, email notifications, and emergency consultation services (ECS). Doctors will have the ability to allocate appointment times, update prescriptions, and access previous medical records. Overall, the platform aims to streamline the healthcare process for travellers while providing a convenient and efficient experience for both patients and doctors",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Gurman Singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.36.4",
+    "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.2",
+    "nodemailer": "^6.9.7",
+    "validator": "^13.9.0"
+  }
+}
