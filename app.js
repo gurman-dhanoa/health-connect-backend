@@ -24,7 +24,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.status(200).json({
+      success: true,
+      message: "Backend is working successfully!!!"
+    });
 });
 app.use("/api/v1", doctorRoutes);
 app.use("/api/v1", userRoutes);
