@@ -2,6 +2,7 @@ const express = require("express");
 const ErrorHandler = require("./middleware/ErrorHandler");
 const CookieParser = require("cookie-parser");
 const fileupload = require('express-fileupload'); 
+const bodyParser = require("body-parser");
 const path = require('path');
 
 // importing routes
@@ -16,10 +17,10 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "config/config.env" });
 }
 
-app.use(fileupload({useTempFiles: true}))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileupload());
 app.use(express.json());
 app.use(CookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
 
 
 
