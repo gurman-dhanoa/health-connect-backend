@@ -4,6 +4,7 @@ const sendEmail = require("../utils/sendEmail")
 const catchAsyncError = require("../middleware/catchAsyncError");
 const { sendAnalyserModel } = require("../utils/jwtToken");
 const Appointment = require("../model/appointmentModel");
+const cloudinary = require("cloudinary");
 
 // Login - done
 // Register - done
@@ -20,13 +21,17 @@ exports.registerAnalyser = catchAsyncError(async (req, res, next) => {
     password,
     gender,
     dateOfBirth,
-    street,
-    city,
-    pincode,
-    state,
-    coordinates,
+    permanentStreet,
+    permanentCity,
+    permanentNumber,
+    permanentState,
     contactNumber
   } = req.body;
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.images, {
+    folder: "images",
+    width: 150,
+    crop: "scale",
+  });
   const analyser = await Analyser.create({
     name,
     email,
@@ -34,13 +39,13 @@ exports.registerAnalyser = catchAsyncError(async (req, res, next) => {
     gender,
     dateOfBirth:dateOfBirth,
     address:{
-      street:street,
-      city:city,
-      pincode:pincode,
-      state:state,
-      coordinates:coordinates,
+      street:permanentStreet,
+      city:permanentCity,
+      pincode:permanentNumber,
+      state:permanentState,
     },
-    contactNumber
+    contactNumber,
+    image: { public_id: myCloud.public_id, url: myCloud.secure_url },
   });
   sendAnalyserModel(analyser, 201, res);
 });

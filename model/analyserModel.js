@@ -60,16 +60,16 @@ const analyserSchema = mongoose.Schema({
         maxLength:[10,"Contact number can have max 10 character"],
         required:[true,"Please enter your contact number"]
     },
-    // image:{
-    //     public_id:{
-    //         type:String,
-    //         required:true
-    //     },
-    //     url:{
-    //         type:String,
-    //         required:true
-    //     }
-    // },
+    image:{
+        public_id:{
+            type:String,
+            required:true
+        },
+        url:{
+            type:String,
+            required:true
+        }
+    },
 });
 
 analyserSchema.pre("save", async function (next) {

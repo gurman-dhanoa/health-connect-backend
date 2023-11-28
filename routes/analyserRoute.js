@@ -1,7 +1,7 @@
 const express = require("express");
 const { loginAnalyser, registerAnalyser, logout, getProfile, fetchAppointments, sendEmailToUser } = require("../controller/analyserController");
 const { isAuthenticatedAnalyser } = require("../middleware/auth");
-const { getAppAnalyser } = require("../controller/appointmentController");
+const { getAppAnalyser, getAppCityAnalyser } = require("../controller/appointmentController");
 
 
 const Router = express.Router();
@@ -17,5 +17,6 @@ Router.route("/analyser/email").get(sendEmailToUser);
 
 // Routes
 Router.route("/analyser/appointments").get(getAppAnalyser);
+Router.route("/analyser/cityAppointments").get(getAppCityAnalyser);
 
 module.exports = Router;

@@ -250,6 +250,41 @@ exports.getAppAnalyser = catchAsyncError(
     }
   }
 );
+exports.getAppCityAnalyser = catchAsyncError(
+  async (req, res, next) => {
+    try {
+      const { state, diseases } = req.query;
+  
+      const appointments = await Appointment.aggregate([
+        {
+          $match: {
+            'location.state.name': state,
+            disease: { $elemMatch: { $eq: diseases } },
+          },
+        },
+        {
+          $group: {
+            _id: '$location.city',
+            cases: { $sum: 1 }, // Count the number of cases for each city
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            city: '$_id',
+            cases: 1,
+          },
+        },
+      ]);  
+      res.status(200).json({
+        success: true,
+        appointments,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+);
 
 // Update appointment
 exports.updateappointment = catchAsyncError(async (req, res, next) => {
